@@ -39,7 +39,9 @@ class Solution {
                             int D = Integer.parseInt(s.substring(a + b + c));
                             if (A <= 255 && B <= 255 && C <= 255 && D <= 255) {
                                 String t = String.valueOf(A) + "." + String.valueOf(B) + "." + String.valueOf(C) + "." + String.valueOf(D);
-                            if (t.length() == s.length() + 3) res.add(t);
+                                if (t.length() == s.length() + 3){
+                                    res.add(t);
+                                }
                             }
                         }
                     }

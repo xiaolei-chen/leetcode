@@ -9,7 +9,7 @@
  *     }
  * }
  */
-public class Solution {
+public class Solution { // http://www.cnblogs.com/hiddenfox/p/3408931.html
     public ListNode detectCycle(ListNode head) {
         ListNode slow = head;
         ListNode fast = head;

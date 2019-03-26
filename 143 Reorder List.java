@@ -16,16 +16,16 @@ class Solution {
             fast = fast.next.next;
         }
         ListNode mid = slow.next;
-        slow.next = null;
+        slow.next = null; //从中间断开
         ListNode last = mid;
         ListNode pre = null;
-        while (last != null) {
+        while (last != null) { //第二个链反转
             ListNode next = last.next;
             last.next = pre;
             pre = last;
             last = next;
         }
-        while (head != null && pre != null) {
+        while (head != null && pre != null) { //间隔插入
             ListNode next = head.next;
             head.next = pre;
             pre = pre.next;

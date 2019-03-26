@@ -26,7 +26,7 @@ class Solution {
                     queue.offer(node.right);
                 }
             }
-            res.add(0,list); //ÍùÇ°²åÈë
+            res.add(0,list);
         }
         return res;
     }
