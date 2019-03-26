@@ -6,12 +6,12 @@
  *     RandomListNode(int x) { this.label = x; }
  * };
  */
-public class Solution { //https://www.cnblogs.com/TenosDoIt/p/3387000.html
-    public RandomListNode copyRandomList(RandomListNode head) {
+class Solution { //https://www.cnblogs.com/TenosDoIt/p/3387000.html
+    public Node copyRandomList(Node head) {
         if(head == null) return head;
-        RandomListNode node = head;
+        Node node = head;
         while(node != null){ //让链表变成一个重复链表，就是新旧更替
-            RandomListNode newNode = new RandomListNode(node.label);
+            Node newNode = new Node(node.val);
             newNode.next = node.next;
             node.next = newNode;
             node = newNode.next;
@@ -23,10 +23,10 @@ public class Solution { //https://www.cnblogs.com/TenosDoIt/p/3387000.html
             }
             node = node.next.next;
         }
-        RandomListNode newHead = head.next;
+        Node newHead = head.next;
         node = head;
         while(node != null){ //把链表拆成两个
-            RandomListNode newNode = node.next;
+            Node newNode = node.next;
             node.next = newNode.next;
             if(newNode.next != null){
                 newNode.next = newNode.next.next;

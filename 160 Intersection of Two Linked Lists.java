@@ -11,7 +11,7 @@
  */
 public class Solution {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        if (headA == null || headB == null) return null;
+        if (headA == null || headB == null) return null; //a、b指针同时在某一链表上
         ListNode a = headA;
         ListNode b = headB;
         while (a != b) { //当其中一条遍历到末尾时，我们跳到另一个条链表的开头继续遍历

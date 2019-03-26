@@ -6,7 +6,7 @@
  *     ListNode(int x) { val = x; }
  * }
  */
-class Solution { //要求迭代 和 循环 两种方法
+class Solution { //循环 方法一
     public ListNode reverseList(ListNode head) {
         /* iterative solution */
         ListNode preHead = null; //创建指针
@@ -22,7 +22,27 @@ class Solution { //要求迭代 和 循环 两种方法
 
 
 /*
-class Solution {
+class Solution { //循环 方法二
+    public ListNode reverseList(ListNode head) {
+        if(head == null) return null;
+        if(head.next == null) return head;
+        ListNode dummy = new ListNode(0);
+        ListNode cur = head;
+        ListNode pre = dummy;
+        while(cur != null){
+            ListNode temp = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = temp;
+        }
+        head.next = null;
+        return pre;
+    }
+}
+*/
+
+/*
+class Solution { //迭代 方法一
     public ListNode reverseList(ListNode head) {
 		// recursive solution 
 		return reverseListInt(head, null); //创建指针

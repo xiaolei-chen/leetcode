@@ -1,5 +1,5 @@
 class Solution {
-    public int singleNumber(int[] nums) { // 00->10->01->00 (0->1->2->3/0)
+    public int singleNumber(int[] nums) { // 00->01->10->00 (0->1->2->3/0)
         int ones = 0;
         int twos = 0;
         for(int i = 0; i < nums.length; i++){

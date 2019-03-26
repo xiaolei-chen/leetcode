@@ -29,3 +29,27 @@ class Solution { //dfs
         return map.get(node);
     }
 }
+
+
+class Solution { // bfs
+    public Node cloneGraph(Node node) {
+        if (node == null){
+            return node;
+        }
+        Map<Node, Node> map = new HashMap<>();
+        map.put(node, new Node(node.val, new ArrayList<Node>()));
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(node);
+        while (!queue.isEmpty()) {
+            Node curr = queue.remove();
+            for (Node neighbor : curr.neighbors) {
+                if (!map.containsKey(neighbor)) {
+                    map.put(neighbor, new Node(neighbor.val, new ArrayList<Node>()));
+                    queue.add(neighbor);
+                }
+                map.get(curr).neighbors.add(map.get(neighbor));
+            }
+        }
+        return map.get(node);
+    }
+}
