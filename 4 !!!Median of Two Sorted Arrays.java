@@ -10,9 +10,16 @@ class Solution {
         return (getKth(nums1, 0, nums2, 0, l) + getKth(nums1, 0, nums2, 0, r)) / 2.0;
     }
     
-    private int getKth(int[] nums1, int start1, int[] nums2, int start2, int k) {// 寻找第k个元素 in nums1 + nums2
+    private int getKth(int[] nums1, int start1, int[] nums2, int start2, int k) {// 寻找第k小的元素 in nums1 + nums2
+        
+        // If nums1 is exhausted, return kth number in nums2
         if (start1 > nums1.length - 1) return nums2[start2 + k - 1];
+        
+        // If nums2 is exhausted, return kth number in nums1
         if (start2 > nums2.length - 1) return nums1[start1 + k - 1];
+        
+        // If k == 1, return the first number
+        // Since nums1 and nums2 is sorted, the smaller one among the start point of nums1 and nums2 is the first one
         if (k == 1) return Math.min(nums1[start1], nums2[start2]);
         // 数组中到底存不存在第K/2个数字
         int mid1 = (start1 + k / 2 - 1 < nums1.length) ? nums1[start1 + k / 2 - 1] : Integer.MAX_VALUE;

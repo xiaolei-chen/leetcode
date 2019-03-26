@@ -1,38 +1,48 @@
 class Solution {
-    private List<List<String>> res;
-    private ArrayList<String> list;
-    
-    public List<List<String>> partition(String s) {
-        res = new ArrayList<List<String>>();
-        list = new ArrayList<String>();
-        backtrack(s, 0);
-        return res;
-    }
-    
-    private void backtrack(String s, int left){
-        if(list.size() > 0 && left >= s.length()){
-            res.add(new ArrayList<String>(list));
+    public void solve(char[][] board) {
+        if(board.length == 0 || board[0].length == 0){
+            return;
         }
-        for(int i=left; i<s.length(); ++i){
-            if(isPalindrome(s, left, i)){
-                list.add(s.substring(left, i+1));
-                backtrack(s, i+1);
-                list.remove(list.size() - 1);
+        if(board.length < 3 || board[0].length < 3){
+            return;
+        }
+        int m = board.length;
+        int n = board[0].length;
+        for(int i=0; i<m; ++i){
+            if(board[i][0] == 'O'){
+                helper(board, i, 0);
+            }
+            if(board[i][n-1] == 'O'){
+                helper(board, i, n-1);
+            }
+        }
+        for(int j=0; j<n; ++j){
+            if(board[0][j] == 'O'){
+                helper(board, 0, j);
+            }
+            if(board[m-1][j] == 'O'){
+                helper(board, m-1, j);
+            }
+        }
+        for(int i=0; i<m; ++i){
+            for(int j=0; j<n; ++j){
+                if(board[i][j] == 'O'){
+                    board[i][j] = 'X';
+                }
+                if(board[i][j] == '*'){
+                    board[i][j] = 'O';
+                }
             }
         }
     }
-    
-    private boolean isPalindrome(String s, int left, int right){
-        if(left == right){
-            return true;
+    public void helper(char[][] board, int r, int c){
+        if(r < 0 || c < 0 || r > board.length - 1 || c > board[0].length - 1 || board[r][c] != 'O'){
+            return;
         }
-        while(left < right){
-            if(s.charAt(left) != s.charAt(right)){
-                return false;
-            }
-            left++;
-            right--;
-        }
-        return true;
+        board[r][c] = '*';
+        helper(board, r+1, c);
+        helper(board, r-1, c);
+        helper(board, r, c+1);
+        helper(board, r, c-1);
     }
 }

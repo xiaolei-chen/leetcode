@@ -1,16 +1,30 @@
 class Solution {
     public int canCompleteCircuit(int[] gas, int[] cost) {
-        int total = 0;
-        int sum = 0;
+        int[] fuel = new int[gas.length];
         int start = 0;
-        for (int i = 0; i < gas.length; ++i) {
-            total += gas[i] - cost[i];
-            sum += gas[i] - cost[i];
-            if (sum < 0) {
-                start = i + 1;
+        int sum = 0;
+        for(int i = 0; i < gas.length; i++){ //最大子列和
+            fuel[i] = gas[i] - cost[i];
+            sum += fuel[i];
+            if(sum < 0){
                 sum = 0;
+                start = i+1;
+                if(start == gas.length){
+                    return -1;
+                }
             }
         }
-        return (total < 0) ? -1 : start;
+        int result = start;
+        sum = 0;
+        for(int i = 0; i < gas.length; i++){
+            if(start + i == gas.length){
+                start = -i;
+            }
+            sum += fuel[start+i];
+            if(sum < 0){
+                return -1;
+            }
+        }
+        return result; 
     }
 }

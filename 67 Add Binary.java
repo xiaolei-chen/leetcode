@@ -1,4 +1,4 @@
-class Solution { //ÀàËÆ415. Add Strings
+class Solution {
     public String addBinary(String a, String b) {
         StringBuilder sb = new StringBuilder();
         int i = a.length() - 1;
@@ -7,7 +7,7 @@ class Solution { //ÀàËÆ415. Add Strings
         while(i >= 0 || j >= 0){
             int sum = carry;
             if(j >= 0){
-                sum += b.charAt(j) - '0'; 
+                sum += b.charAt(j) - '0';
                 j--;
             }
             if(i >= 0){

@@ -1,45 +1,30 @@
-/*
-// Definition for a Node.
-class Node {
-    public int val;
-    public Node left;
-    public Node right;
-    public Node next;
-
-    public Node() {}
-
-    public Node(int _val,Node _left,Node _right,Node _next) {
-        val = _val;
-        left = _left;
-        right = _right;
-        next = _next;
-    }
-};
-*/
-class Solution {
-    public Node connect(Node root) {
-        if(root == null){
-            return null;
-        }
-        Queue<Node> q = new LinkedList<>();
-        q.add(root);
-        int count = 1;
-        while(!q.isEmpty()) {
-            Node current = q.poll();
-            count--;
-            if(current.left != null){
-                q.add(current.left);
+/**
+ * Definition for binary tree with next pointer.
+ * public class TreeLinkNode {
+ *     int val;
+ *     TreeLinkNode left, right, next;
+ *     TreeLinkNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public void connect(TreeLinkNode root) {
+        TreeLinkNode dummyHead = new TreeLinkNode(0); //dummy结点指向每层的首结点的前一个结点，将一层的所有节点串起来！
+        TreeLinkNode pre = dummyHead; //pre只是一个指针
+        while (root != null) {
+            if (root.left != null) {
+                pre.next = root.left;
+                pre = pre.next;
             }
-            if(current.right != null){
-                q.add(current.right);
+            if (root.right != null) {
+                pre.next = root.right;
+                pre = pre.next;
             }
-            if(count == 0){
-                count = q.size();
-                current.next = null;
-            }else{
-                current.next = q.peek();
+            root = root.next; //此时root向右平移一位，指向其next指针
+            if (root == null) { //当前层已经遍历完了
+                pre = dummyHead; //重置pre为dummy结点
+                root = dummyHead.next; //root此时为dummyHead.next，即下一层的首结点
+                dummyHead.next = null; //指针清空，防止死循环
             }
         }
-        return root;
     }
 }
